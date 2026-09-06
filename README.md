@@ -84,6 +84,10 @@ każdej wartości - sam raport nie ujawnia pełnych danych).
   kontrolnej (bo żadna nie istnieje) - każdy ciąg 9 cyfr w odpowiednim
   formacie jest traktowany jak potencjalny numer telefonu, co czasem
   da fałszywy alarm (np. na numerze referencyjnym).
+- **W DOCX sprawdzane są tylko akapity i tabele w treści dokumentu.**
+  Nagłówki, stopki, przypisy i hiperłącza (tekst linku bywa osobnym
+  polem, nie zwykłym akapitem) nie są przez program przeglądane - dane
+  osobowe umieszczone tam nie zostaną wykryte ani usunięte.
 - **Skanowane obrazy w PDF nie zadziałają.** Program czyta tekst
   zapisany w pliku PDF - zeskanowana strona zapisana jako obrazek
   wymagałaby OCR-u, którego tu nie ma.
