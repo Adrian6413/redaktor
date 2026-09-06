@@ -18,7 +18,11 @@ _EMAIL_RE = re.compile(r"\b[\w.+-]+@[\w-]+\.[\w.-]+\b")
 _NRB_RE = re.compile(r"\b(?:PL)?\d{2}(?:[ -]?\d{4}){6}\b|\b(?:PL)?\d{26}\b")
 _PESEL_RE = re.compile(r"\b\d{11}\b")
 _NIP_RE = re.compile(r"\b\d{3}-\d{2}-\d{2}-\d{3}\b|\b\d{3}-\d{3}-\d{2}-\d{2}\b|\b\d{10}\b")
-_PHONE_RE = re.compile(r"(?:\+48|0048)?[ -]?(?:\d{3}[ -]?){2}\d{3}\b")
+# (?<!\d) / (?!\d) zamiast \b na obu koncach - \b samo w sobie nie
+# przeszkodzilo dopasowaniu sie do fragmentu dluzszego ciagu cyfr (np.
+# 13-cyfrowego numeru zamowienia), bo w srodku ciagu samych cyfr nie ma
+# zadnej granicy \b, do ktorej mozna by sie odwolac
+_PHONE_RE = re.compile(r"(?<!\d)(?:\+48|0048)?[ -]?(?:\d{3}[ -]?){2}\d{3}(?!\d)")
 
 _ONLY_DIGITS = re.compile(r"\D")
 

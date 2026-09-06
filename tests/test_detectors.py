@@ -39,6 +39,19 @@ def test_wykrywa_nrb_i_nie_myli_go_z_pesel_w_srodku():
     assert findings[0].value == VALID_NRB
 
 
+def test_dlugi_ciag_cyfr_nie_jest_mylony_z_telefonem():
+    # 13-cyfrowy numer zamowienia - nie pasuje do zadnego wzorca caloscia,
+    # a telefon (9 cyfr) nie powinien dopasowac sie do jego fragmentu
+    findings = find_findings("Numer zamowienia: 1234567890123 zostal przyjety.")
+    assert findings == []
+
+
+def test_telefon_z_prefiksem_plus48():
+    findings = find_findings("Zadzwon pod +48 501 234 567 w razie pytan.")
+    assert [f.kind for f in findings] == ["TELEFON"]
+    assert findings[0].value == "+48 501 234 567"
+
+
 def test_kilka_roznych_danych_naraz():
     text = (
         f"PESEL: {VALID_PESEL}, email: test@example.com, "
